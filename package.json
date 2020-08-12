@@ -1,0 +1,22 @@
+{
+  "name": "workout_timer_wim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass src/styles/main.scss src/styles/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philison/workout-timer.git"
+  },
+  "author": "philison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/philison/workout-timer/issues"
+  },
+  "homepage": "https://github.com/philison/workout-timer#readme",
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  }
+}
