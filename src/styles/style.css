@@ -53,6 +53,10 @@ body {
 
 @keyframes testAnimationLeave {
   from { }
+  10% {
+    transform: translateY(30vh) scale(0.75); }
+  30% {
+    transform: translateY(35vh) scale(1.1); }
   to {
     transform: translateY(50vh) scale(1.6); } }
   #home-page-container .enter-HomePage-ball {
@@ -80,11 +84,13 @@ body {
     stroke-dashoffset: -1614; }
   to { } }
     #home-page-container .app-heading svg .leave-HomePageToSettingsPage-appHeading-animation {
-      animation: leave-HomePageToSettingsPage-appHeading reverse 0.5s ease-in; }
+      animation: leave-HomePageToSettingsPage-appHeading reverse 0.5s ease-out; }
 
 @keyframes leave-HomePageToSettingsPage-appHeading {
   from {
     stroke-dashoffset: -1614; }
+  80% {
+    stroke-dashoffset: -580; }
   to {
     stroke-dashoffset: -600; } }
 
