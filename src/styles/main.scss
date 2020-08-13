@@ -1,63 +1,9 @@
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+@import 'base';
+@import 'homePage';
+@import 'settingsPage';
+@import 'timerPage';
 
-:root {
-  --path-length: 0;
-}
-
-html {
-  // This defines what 1rem is
-  font-size: 62.5%;
-}
-
-body {
-  box-sizing: border-box;
+#page-container {
   height: 100vh;
   width: 100vw;
-}
-
-.page-container {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-}
-
-.page {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-
-  .testContainer {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-
-    .ball {
-      width: 10rem;
-      height: 10rem;
-      background-color: pink;
-      border-radius: 50%;
-    }
-  }
-
-  .app-heading {
-    position: absolute;
-    width: 80%;
-    left: 10%;
-    top: 2%;
-    background-color: pink;
-
-    svg {
-      path {
-        stroke: #4285f4;
-      }
-    }
-  }
 }

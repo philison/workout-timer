@@ -1,8 +1,8 @@
 import state from '../app.js';
 import { insertHTML } from '../components/services.js';
 
-const settingsPage = {
-  pageAnchor: 'settingsPage',
+const timerPage = {
+  pageAnchor: 'timerPage',
 
   insertPageHtml: function () {
     console.log('Settings insertPageHtml');
@@ -10,24 +10,24 @@ const settingsPage = {
     let html = `<div id="settings-page-container" class="page">
     <div class="testContainer-settings">
       <a class="ball-settings" href="/#homePage">
-        <span class="goBtnText-settings">GO</span>
+        Settings
       </a>
     </div>
   </div>`;
 
     insertHTML(html);
-    console.log('settings html insertet');
+    console.log('timer html insertet');
     //console.log(document.querySelector('#page-container').innerHTML);
   },
 
-  enterFromAllPage: function () {
+  enterFromSettingsPage: function () {
     state.curPage = this.pageAnchor;
-    console.log('enterFromAllPage');
+    console.log('enterFromSettingsPage');
   },
 
-  leaveToTimerPage: function () {
-    console.log('leaveToTimerPage');
+  leaveToSettingsPage: function () {
+    console.log('leaveToSettingsPage');
   },
 };
 
-export default settingsPage;
+export default timerPage;

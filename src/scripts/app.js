@@ -6,6 +6,8 @@
 //TODO: 2. add animations
 // enter animation has to be triggered from the html insertion function so that everything waits on the leave animation to finish
 
+//TODO: !!! save state / route to memmory : TAPED for NOW
+// What happens if animation is abborded ? does the event handler get triggered
 /*
 timing of the animation function and the writing of the html content
 */
@@ -28,11 +30,13 @@ const router = function () {
   console.log('Router startet');
   //extract route and update corresponding state elements
   writeURLAnchor();
-
+  console.log(`requestet Page: ${state.requestetPage}`);
+  console.log(state);
   //stores the element on which we add the animation end eventlistener
   let animationElement;
   //render page leave animation, if requestet page != current page
   if (state.requestetPage !== state.curPage) {
+    // page transition
     switch (state.curPage) {
       case 'initialLoad':
         homePage.insertPageHtml(); //insert html here and skip leave animation
@@ -41,7 +45,28 @@ const router = function () {
       case homePage.pageAnchor:
         animationElement = homePage.leaveToSettingsPage();
         //insert html when animation is done
-        animationElement.addEventListener('animationend', insertPageHtml());
+        //animationElement.addEventListener('animationend',insertPageHtml(event));
+        animationElement.onanimationend = () => {
+          insertPageHtml();
+        };
+        break;
+      case settingsPage.pageAnchor:
+        //animationElement = settingsPage.leaveToSettingsPage();
+        insertPageHtml();
+        break;
+      default:
+        break;
+    }
+  } else {
+    // page reload
+    switch (state.requestetPage) {
+      case homePage.pageAnchor:
+        insertPageHtml();
+        homePage.enterFromInit();
+        break;
+      case settingsPage.pageAnchor:
+        console.log('settings reload');
+        insertPageHtml();
         break;
       default:
         break;
@@ -60,6 +85,10 @@ const writeURLAnchor = function () {
   // on first load the is no anchor set
   if (location.hash) {
     state.requestetPage = location.hash.substring(1);
+    // if on reload the state variable is resetet and the curPage element is empty it will be asigned the current hash anchor
+    if (!state.curPage) {
+      state.curPage = state.requestetPage;
+    }
   } else {
     state.requestetPage = homePage.pageAnchor;
     state.curPage = 'initialLoad';
@@ -67,12 +96,17 @@ const writeURLAnchor = function () {
 };
 
 const insertPageHtml = function () {
+  //console.log(event);
   //insert the html of the requestet page (independent of entry route)
   //initial load and homePage have same html
   switch (state.requestetPage) {
     case settingsPage.pageAnchor:
       settingsPage.insertPageHtml();
       settingsPage.enterFromAllPage(); //page enter animation independent from entry rout
+      break;
+    case homePage.pageAnchor:
+      homePage.insertPageHtml();
+      //homePage.enterFromInit();
       break;
     default:
       break;
@@ -81,6 +115,8 @@ const insertPageHtml = function () {
   //update state
   state.curPage = state.requestetPage;
 };
+
+export default state;
 
 /*
 const startEnterRender = function () {
