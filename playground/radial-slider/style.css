@@ -19,7 +19,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  /*background-color: pink;*/
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
   background-color: pink;
+}
+
+#radial-slider-container-0 {
+  position: absolute;
+  margin: 0 auto;
 }
 
 .radial-slider-container {
@@ -31,6 +42,7 @@ body {
 }
 
 .radial-slider-valueDisp {
+  user-select: none;
   color: #4285f4;
   font-family: sans-serif;
   font-weight: 900;
