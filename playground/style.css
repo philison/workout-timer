@@ -1,0 +1,60 @@
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --path-length: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: pink;
+}
+
+.radial-slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: pink;
+  width: 50%;
+}
+
+.radial-slider-valueDisp {
+  color: #4285f4;
+  font-family: sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  position: absolute;
+  z-index: 5;
+}
+
+.radial-slider-svg {
+  /*background-color: green;*/
+  transform: scaleY(-1) rotateZ(90deg);
+}
+
+.radial-slider-path {
+  stroke: #4285f4;
+  stroke-dasharray: 25;
+  stroke-dashoffset: 25;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 26.482;
+  }
+}

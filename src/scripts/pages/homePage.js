@@ -56,11 +56,7 @@ const homePage = {
     path.classList.remove('enter-HomePage-appHeading-animation');
 
     ball.classList.add('leaveToSettingsPage-ball');
-
-    //path.classList.remove('leave-HomePageToSettingsPage-appHeading-animation');
-    console.log(path);
     path.classList.add('leave-HomePageToSettingsPage-appHeading-animation');
-    console.log(path);
     //console.log(ball);
     return ball;
   },
