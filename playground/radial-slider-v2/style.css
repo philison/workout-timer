@@ -20,35 +20,58 @@ body {
   align-items: center;
   justify-content: center;
   /*background-color: pink;*/
+
+  /*prevent scrolling */
+  position: fixed;
+  /*overflow: hidden;*/
 }
 
 .container {
   width: 100vw;
   height: 100vh;
   background-color: pink;
+  display: flex;
+  justify-content: center;
 }
 
 #radial-slider-container-0 {
   position: absolute;
+  bottom: 0;
   margin: 0 auto;
+  width: 100%;
+  transform: translateY(50%);
+}
+
+#radial-slider-container-1 {
+  position: absolute;
+  bottom: 10rem;
+  width: 100%;
+  transform: translateY(50%);
+  z-index: 10;
 }
 
 .radial-slider-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: pink;
-  width: 50%;
+}
+
+.radial-slider-valueDisp-container {
+  position: absolute;
+  z-index: 5;
+  height: 100%;
+  transform: rotateZ(-20deg);
+  /*makes the element invisble to click events*/
+  pointer-events: none;
 }
 
 .radial-slider-valueDisp {
   user-select: none;
-  color: #4285f4;
+  color: white;
   font-family: sans-serif;
   font-weight: 900;
   font-size: 2.5rem;
-  position: absolute;
-  z-index: 5;
+  margin-top: 0.5rem;
 }
 
 .radial-slider-svg {
@@ -61,6 +84,8 @@ body {
   stroke: #4285f4;
   stroke-dasharray: 25;
   stroke-dashoffset: 25;
+  fill: none;
+  stroke-linecap: round;
 }
 
 @keyframes dash {

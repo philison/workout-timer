@@ -1,4 +1,11 @@
-// TODO: test stacking of multiple elements, modular size, rotation  etc.
+// TODO: test stacking of multiple elements (Interactibility), modular size
+//TODO: map angle to settings range, start and end angle for every circle depends on the size
+//TODO: insert html into parent ----DONE 18.08
+//TODO: animate text to rotate with circle ----DONE 18.08
+
+// 1. enter the correct parent in the init function
+// 2. add id-css selector for the newly created class
+// 3.
 
 class RadialSlider {
   constructor(id = 0, defaultValue = 180) {
@@ -8,13 +15,32 @@ class RadialSlider {
     this.svgCenter = [];
     this.radialSliderSvg = {};
     this.radialSliderPath = {};
+    this.radialSliderValueDispContainer = {};
     this.radialSliderValueDisp = {};
     this.angle = 0;
     this.svgPathLength = 0;
+    this.parent = {};
+    this.html = `<div id="radial-slider-container-${this.id}" class="radial-slider-container">
+    <div class="radial-slider-valueDisp-container">
+      <div class="radial-slider-valueDisp">0</div>
+    </div>
+    <svg class="radial-slider-svg" width="100%" viewBox="0 0 100 100">
+      <circle 
+        class="radial-slider-path"
+        fill="none"
+        stroke-width="20"
+        cx="50"
+        cy="50"
+        r="40"
+      ></circle>
+    </svg>
+  </div>`;
   }
 
   init() {
     console.log('init');
+    this.parent = document.querySelector('.container');
+    this.insertHTML(this.parent);
 
     // get elements
     this.radialSliderSvg = document.querySelector(
@@ -25,6 +51,9 @@ class RadialSlider {
     );
     this.radialSliderValueDisp = document.querySelector(
       `#radial-slider-container-${this.id} .radial-slider-valueDisp`
+    );
+    this.radialSliderValueDispContainer = document.querySelector(
+      `#radial-slider-container-${this.id} .radial-slider-valueDisp-container`
     );
 
     // get svg center !!! put in INIT
@@ -53,7 +82,7 @@ class RadialSlider {
 
   addMouseEventListener() {
     // Mouse Input
-    this.radialSliderSvg.addEventListener('mousedown', (e) => {
+    this.radialSliderPath.addEventListener('mousedown', (e) => {
       this.draggingSlider = true;
 
       // with this code block, a tap is enough to adjust the settings / could be refactored
@@ -86,7 +115,7 @@ class RadialSlider {
 
   addTouchEventListener() {
     // Touch Input
-    this.radialSliderSvg.addEventListener('touchstart', (e) => {
+    this.radialSliderPath.addEventListener('touchstart', (e) => {
       //e.preventDefault();
       this.draggingSlider = true;
 
@@ -145,10 +174,20 @@ class RadialSlider {
     //console.log(`offset: ${this.radialSliderPath.style.strokeDashoffset}`);
 
     // update textField
+    this.radialSliderValueDispContainer.style.transform = `rotateZ(${
+      this.angle - 180
+    }deg)`;
     this.radialSliderValueDisp.textContent = Math.ceil(this.angle);
-    console.log(this.angle);
+    //console.log(this.angle);
+  }
+
+  insertHTML(parentEl) {
+    parentEl.insertAdjacentHTML('beforeend', this.html);
   }
 }
 
 const radialSlider0 = new RadialSlider(0, 180);
+const radialSlider1 = new RadialSlider(1, 180);
+
+radialSlider1.init();
 radialSlider0.init();
