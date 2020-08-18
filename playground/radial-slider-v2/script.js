@@ -1,5 +1,3 @@
-// TODO: test stacking of multiple elements (Interactibility), modular size ----DONE 18.08
-//TODO: remove overhead ----DONE 18.08
 //TODO: add the option to use the slider up side down
 //TODO: map angle to settings range, start and end angle for every circle depends on the size
 //TODO: fit angle range to the slider-circle size, prevent slider from slipping of screen
@@ -9,9 +7,10 @@
 // 3.
 
 class RadialSlider {
-  constructor(id = 0, defaultValue = 180) {
+  constructor(id = 0, defaultValue = 180, upsideDown = false) {
     this.id = id; // 0-indexed
     this.defaultValue = defaultValue;
+    this.upsideDown = upsideDown;
     this.draggingSlider = false;
     this.svgCenter = [];
     this.radialSliderSvg = {};
@@ -158,8 +157,14 @@ class RadialSlider {
     //console.log(`ak: ${x} / gk: ${y}`);
     // -90 just to compemsate for rotation
     let angle180 = (Math.atan2(y, x) * 180) / Math.PI;
-    //console.log(angle180);
-    this.angle = angle180 >= -90 ? 270 - angle180 : -angle180 - 90;
+    console.log(angle180);
+
+    if (!this.upsideDown) {
+      this.angle = angle180 >= -90 ? 270 - angle180 : -angle180 - 90;
+    } else {
+      this.radialSliderSvg.style.transform = 'rotateX(180deg) rotateZ(90deg)';
+      this.angle = angle180 >= 90 ? angle180 - 90 : angle180 + 270;
+    }
 
     /*
     -------------from left clockwise:
@@ -182,9 +187,16 @@ class RadialSlider {
     //console.log(`offset: ${this.radialSliderPath.style.strokeDashoffset}`);
 
     // update textField
-    this.radialSliderValueDispContainer.style.transform = `rotateZ(${
-      this.angle - 180
-    }deg)`;
+    if (!this.upsideDown) {
+      this.radialSliderValueDispContainer.style.transform = `rotateZ(${
+        this.angle - 180
+      }deg)`;
+    } else {
+      this.radialSliderValueDispContainer.style.transform = `rotateZ(${-this
+        .angle}deg)`;
+      this.radialSliderValueDisp.style.transform = 'scaleX(-1) scaleY(-1)';
+    }
+
     this.radialSliderValueDisp.textContent = Math.ceil(this.angle);
     //console.log(this.angle);
   }
@@ -194,8 +206,8 @@ class RadialSlider {
   }
 }
 
-const radialSlider0 = new RadialSlider(0, 180);
-const radialSlider1 = new RadialSlider(1, 180);
+const radialSlider0 = new RadialSlider(0, 180, true);
+const radialSlider1 = new RadialSlider(1, 180, false);
 
 radialSlider0.init();
 radialSlider1.init();
