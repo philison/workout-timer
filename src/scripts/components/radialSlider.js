@@ -1,5 +1,6 @@
-// TODO: update the state to the slider values and read default values for init
-// TODO: map values to angle
+// TODO: update the state to the slider values and read default values for init --DONE
+
+import state from '../app.js';
 
 // 1. enter the correct parent in the init function
 // 2. add id-css selector for the newly created class
@@ -231,19 +232,42 @@ class RadialSlider {
       this.radialSliderValueDisp.style.transform = 'scaleX(-1) scaleY(-1)';
     }
 
-    console.log(`angle in uppdate: ${this.angle}`);
+    //console.log(`angle in uppdate: ${this.angle}`);
     const rangeUI = this.sliderUILimits[1] - this.sliderUILimits[0];
     const rangeValue = this.sliderValueRange[1] - this.sliderValueRange[0];
     this.value =
       ((this.angle - this.sliderUILimits[0]) / rangeUI) * rangeValue +
       this.sliderValueRange[0];
-    console.log(this.value);
+    //console.log(this.value);
     this.radialSliderValueDisp.textContent = Math.round(this.value);
     //console.log(this.angle);
+
+    // update the state variables
+    this.updateState();
+    //console.log(state.userSetSliderValues);
   }
 
   insertHTML(parentEl) {
     parentEl.insertAdjacentHTML('beforeend', this.html);
+  }
+
+  updateState() {
+    switch (this.id) {
+      case 0:
+        state.userSetSliderValues.reps = Math.round(this.value);
+        break;
+      case 1:
+        state.userSetSliderValues.interval = Math.round(this.value);
+        break;
+      case 2:
+        state.userSetSliderValues.pause = Math.round(this.value);
+        break;
+      case 3:
+        state.userSetSliderValues.marker = Math.round(this.value);
+        break;
+      default:
+        break;
+    }
   }
 }
 

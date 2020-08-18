@@ -110,18 +110,98 @@ width: 100% * x
 .radial-slider-path {
   stroke: var(--secondary-color);
   stroke-dasharray: 25;
-  stroke-dashoffset: 25;
+  stroke-dashoffset: 200;
   fill: none;
   stroke-linecap: round;
   /*enable it to detect mouse/touch events: slider stacking possible*/
   pointer-events: stroke;
 }
 
-@keyframes dash {
+/*@keyframes dash {
   from {
     stroke-dashoffset: 0;
   }
   to {
     stroke-dashoffset: 26.482;
+  }
+}*/
+
+// page enter  -----------------------------------------
+
+.enter-SettingsPage-slider-animation {
+  animation: enter-SettingsPage-slider 1.5s ease-out;
+  @keyframes enter-SettingsPage-slider {
+    from {
+      stroke-dashoffset: 250;
+      //stroke: black;
+    }
+    to {
+      //stroke-dashoffset: 200;
+      //stroke: pink;
+    }
+  }
+}
+
+.enter-SettingsPage-valueDisp-animation {
+  animation: enter-SettingsPage-valueDisp 1.5s ease-out;
+  @keyframes enter-SettingsPage-valueDisp {
+    from {
+      transform: rotateZ(-300deg);
+      //stroke: black;
+    }
+    to {
+    }
+  }
+}
+
+.enter-SettingsPage-valueDisp-animation-upsideDown {
+  animation: enter-SettingsPage-valueDisp-upsideDown 1.5s ease-out;
+  @keyframes enter-SettingsPage-valueDisp-upsideDown {
+    from {
+      transform: rotateZ(30deg);
+      //stroke: black;
+    }
+    to {
+    }
+  }
+}
+
+// page leave -------------------------------------
+
+.leave-SettingsPage-slider-animation {
+  animation: leave-SettingsPage-slider 0.8s ease-in;
+  @keyframes leave-SettingsPage-slider {
+    from {
+      //stroke: black;
+    }
+    to {
+      stroke-dashoffset: 250;
+      //stroke-dashoffset: 200;
+      //stroke: pink;
+    }
+  }
+}
+
+.leave-SettingsPage-valueDisp-animation {
+  animation: leave-SettingsPage-valueDisp 0.8s ease-in;
+  @keyframes leave-SettingsPage-valueDisp {
+    from {
+      //stroke: black;
+    }
+    to {
+      transform: rotateZ(-300deg);
+    }
+  }
+}
+
+.leave-SettingsPage-valueDisp-animation-upsideDown {
+  animation: leave-SettingsPage-valueDisp-upsideDown 0.8s ease-in;
+  @keyframes leave-SettingsPage-valueDisp-upsideDown {
+    from {
+      //stroke: black;
+    }
+    to {
+      transform: rotateZ(30deg);
+    }
   }
 }

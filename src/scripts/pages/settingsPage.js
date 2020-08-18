@@ -42,11 +42,59 @@ const settingsPage = {
 
   enterFromAllPage: function () {
     state.curPage = this.pageAnchor;
+
+    // select DOM element to be animated
+    let path = document.querySelectorAll('.radial-slider-path');
+    path.forEach((e) => {
+      e.classList.add('enter-SettingsPage-slider-animation');
+    });
+
+    let disp = document.querySelectorAll('.radial-slider-valueDisp-container');
+    let sliderIndex = 0;
+    disp.forEach((e) => {
+      sliderIndex < 3
+        ? e.classList.add('enter-SettingsPage-valueDisp-animation-upsideDown')
+        : e.classList.add('enter-SettingsPage-valueDisp-animation');
+      sliderIndex += 1;
+    });
+
     console.log('enterFromAllPage');
   },
 
   leaveToTimerPage: function () {
-    console.log('leaveToTimerPage');
+    console.log('leaveToTimerPage /for now homePage');
+    let path = document.querySelectorAll('.radial-slider-path');
+    let disp = document.querySelectorAll('.radial-slider-valueDisp-container');
+    //purge classes
+    //ball.classList.remove('enter-HomePage-ball');
+    //path.classList.remove('enter-HomePage-appHeading-animation');
+    path.forEach((e) => {
+      e.classList.remove('enter-SettingsPage-slider-animation');
+    });
+    let sliderIndex = 0;
+    disp.forEach((e) => {
+      sliderIndex < 3
+        ? e.classList.remove(
+            'enter-SettingsPage-valueDisp-animation-upsideDown'
+          )
+        : e.classList.remove('enter-SettingsPage-valueDisp-animation');
+      sliderIndex += 1;
+    });
+
+    //ball.classList.add('leaveToSettingsPage-ball');
+    //path.classList.add('leave-HomePageToSettingsPage-appHeading-animation');
+    path.forEach((e) => {
+      e.classList.add('leave-SettingsPage-slider-animation');
+    });
+    sliderIndex = 0;
+    disp.forEach((e) => {
+      sliderIndex < 3
+        ? e.classList.add('leave-SettingsPage-valueDisp-animation-upsideDown')
+        : e.classList.add('leave-SettingsPage-valueDisp-animation');
+      sliderIndex += 1;
+    });
+
+    return path[0];
   },
 };
 

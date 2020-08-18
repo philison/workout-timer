@@ -22,6 +22,13 @@ const state = {
   curPage: '',
   //requestet page
   requestetPage: '',
+
+  userSetSliderValues: {
+    reps: 10,
+    interval: 60,
+    pause: 30,
+    marker: 1,
+  },
 };
 
 const content = null || document.getElementById('page-container');
@@ -52,7 +59,10 @@ const router = function () {
         break;
       case settingsPage.pageAnchor:
         //animationElement = settingsPage.leaveToSettingsPage();
-        insertPageHtml();
+        animationElement = settingsPage.leaveToTimerPage();
+        animationElement.onanimationend = () => {
+          insertPageHtml();
+        };
         break;
       default:
         break;
