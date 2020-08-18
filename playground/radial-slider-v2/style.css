@@ -10,6 +10,10 @@
   --path-length: 0;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 html,
 body {
   height: 100%;
@@ -24,6 +28,9 @@ body {
   /*prevent scrolling */
   position: fixed;
   /*overflow: hidden;*/
+  font-family: 'Hammersmith One', sans-serif;
+  font-weight: 400;
+  font-size: 4rem;
 }
 
 .container {
@@ -37,23 +44,23 @@ body {
 #radial-slider-container-0 {
   position: absolute;
   bottom: 0;
-  margin: 0 auto;
   width: 100%;
-  transform: translateY(50%);
+  transform: translateY(0%);
 }
 
 #radial-slider-container-1 {
   position: absolute;
-  bottom: 10rem;
-  width: 100%;
-  transform: translateY(50%);
-  z-index: 10;
+  bottom: 0;
+  width: 400%;
+  transform: translateY(60%);
 }
 
 .radial-slider-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  /*makes the elements invisble to click events, only the stroke will be set to be interactable*/
+  pointer-events: none;
 }
 
 .radial-slider-valueDisp-container {
@@ -61,17 +68,13 @@ body {
   z-index: 5;
   height: 100%;
   transform: rotateZ(-20deg);
-  /*makes the element invisble to click events*/
-  pointer-events: none;
 }
 
 .radial-slider-valueDisp {
   user-select: none;
   color: white;
-  font-family: sans-serif;
-  font-weight: 900;
-  font-size: 2.5rem;
-  margin-top: 0.5rem;
+
+  margin-top: 1.5rem;
 }
 
 .radial-slider-svg {
@@ -86,6 +89,18 @@ body {
   stroke-dashoffset: 25;
   fill: none;
   stroke-linecap: round;
+  /*enable it to detect mouse/touch events: slider stacking possible*/
+  pointer-events: stroke;
+}
+
+#radial-slider-container-0 .radial-slider-path {
+  stroke-width: 20;
+  r: 40;
+}
+
+#radial-slider-container-1 .radial-slider-path {
+  stroke-width: 10;
+  r: 45;
 }
 
 @keyframes dash {

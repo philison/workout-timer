@@ -1,7 +1,8 @@
-// TODO: test stacking of multiple elements (Interactibility), modular size
+// TODO: test stacking of multiple elements (Interactibility), modular size ----DONE 18.08
+//TODO: remove overhead ----DONE 18.08
+//TODO: add the option to use the slider up side down
 //TODO: map angle to settings range, start and end angle for every circle depends on the size
-//TODO: insert html into parent ----DONE 18.08
-//TODO: animate text to rotate with circle ----DONE 18.08
+//TODO: fit angle range to the slider-circle size, prevent slider from slipping of screen
 
 // 1. enter the correct parent in the init function
 // 2. add id-css selector for the newly created class
@@ -70,7 +71,7 @@ class RadialSlider {
       this.radialSliderPath.getTotalLength() +
       parseInt(this.radialSliderPath.getAttribute('stroke-width'));
     this.radialSliderPath.style.strokeDasharray = this.svgPathLength;
-    this.radialSliderPath.style.strokeDashoffset = this.svgPathLength - 0.01;
+    this.radialSliderPath.style.strokeDashoffset = this.svgPathLength;
 
     //set default value
     this.angle = this.defaultValue;
@@ -91,7 +92,7 @@ class RadialSlider {
       this.currentAngle(mousePos);
 
       // update UI
-      console.log(`mousemove: ${this.angle}`);
+      //console.log(`mousemove: ${this.angle}`);
       this.updateUI();
     });
 
@@ -107,7 +108,7 @@ class RadialSlider {
         this.currentAngle(mousePos);
 
         // update UI
-        console.log(`mousemove: ${this.angle}`);
+        //console.log(`mousemove: ${this.angle}`);
         this.updateUI();
       }
     });
@@ -125,7 +126,7 @@ class RadialSlider {
       this.currentAngle(mousePos);
 
       // update UI
-      console.log(`mousemove: ${this.angle}`);
+      //console.log(`mousemove: ${this.angle}`);
       this.updateUI();
     });
 
@@ -143,21 +144,21 @@ class RadialSlider {
         this.currentAngle(mousePos);
 
         // update UI
-        console.log(`mousemove: ${this.angle}`);
+        //console.log(`mousemove: ${this.angle}`);
         this.updateUI();
       }
     });
   }
 
   currentAngle(mousePos) {
-    console.log(`mousePos: ${mousePos}`);
-    console.log(`svgCenter: ${this.svgCenter}`);
+    //console.log(`mousePos: ${mousePos}`);
+    //console.log(`svgCenter: ${this.svgCenter}`);
     let x = mousePos[0] - this.svgCenter[0];
     let y = -1 * (mousePos[1] - this.svgCenter[1]);
-    console.log(`ak: ${x} / gk: ${y}`);
+    //console.log(`ak: ${x} / gk: ${y}`);
     // -90 just to compemsate for rotation
     let angle180 = (Math.atan2(y, x) * 180) / Math.PI;
-    console.log(angle180);
+    //console.log(angle180);
     this.angle = angle180 >= -90 ? 270 - angle180 : -angle180 - 90;
 
     /*
@@ -168,8 +169,15 @@ class RadialSlider {
   }
 
   updateUI() {
+    // 0.935 to equalize the non-linearity in the circle growth
+    // (900 / this.svgPathLength) adds additional space for the displayed angle to breath
     this.radialSliderPath.style.strokeDashoffset =
-      this.svgPathLength - this.svgPathLength * (-this.angle * (-1 / 360));
+      this.svgPathLength -
+      this.svgPathLength * (-this.angle * (-1 / 360)) * 0.935 -
+      900 / this.svgPathLength;
+    //console.log(`pathLength: ${this.svgPathLength}`);
+    //console.log(`angle: ${this.angle}`);
+    //console.log(`DELTA strokeDashOffset: ${-this.svgPathLength * (-this.angle * (-1 / 360))}`);
     //console.log(`pathLength: ${this.svgPathLength}`);
     //console.log(`offset: ${this.radialSliderPath.style.strokeDashoffset}`);
 
@@ -189,5 +197,5 @@ class RadialSlider {
 const radialSlider0 = new RadialSlider(0, 180);
 const radialSlider1 = new RadialSlider(1, 180);
 
-radialSlider1.init();
 radialSlider0.init();
+radialSlider1.init();
