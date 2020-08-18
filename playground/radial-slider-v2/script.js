@@ -1,25 +1,37 @@
-//TODO: add the option to use the slider up side down
-//TODO: map angle to settings range, start and end angle for every circle depends on the size
-//TODO: fit angle range to the slider-circle size, prevent slider from slipping of screen
+//TODO: map angle to settings range, start and end angle for every circle depends on the size ----DONE
+//TODO: fit angle range to the slider-circle size, prevent slider from slipping of screen ----DONE
 
 // 1. enter the correct parent in the init function
 // 2. add id-css selector for the newly created class
-// 3.
+// 3. set size of the new slider and adjust the limits
 
 class RadialSlider {
-  constructor(id = 0, defaultValue = 180, upsideDown = false) {
+  constructor(
+    id = 0,
+    defaultValue = 180,
+    sliderValueRange = [0, 10],
+    sliderUILimits = [130, 230],
+    upsideDown = false
+  ) {
     this.id = id; // 0-indexed
     this.defaultValue = defaultValue;
+    this.sliderValueRange = sliderValueRange;
+    this.sliderUILimits = sliderUILimits; // in degrees
     this.upsideDown = upsideDown;
+
     this.draggingSlider = false;
+
     this.svgCenter = [];
     this.radialSliderSvg = {};
     this.radialSliderPath = {};
     this.radialSliderValueDispContainer = {};
     this.radialSliderValueDisp = {};
+
     this.angle = 0;
     this.svgPathLength = 0;
     this.parent = {};
+    this.value = 0; // holds the calculatet value of the slider
+
     this.html = `<div id="radial-slider-container-${this.id}" class="radial-slider-container">
     <div class="radial-slider-valueDisp-container">
       <div class="radial-slider-valueDisp">0</div>
@@ -166,6 +178,13 @@ class RadialSlider {
       this.angle = angle180 >= 90 ? angle180 - 90 : angle180 + 270;
     }
 
+    // cehck if left or right limit is reached
+    if (this.angle < this.sliderUILimits[0]) {
+      this.angle = this.sliderUILimits[0];
+    } else if (this.angle > this.sliderUILimits[1]) {
+      this.angle = this.sliderUILimits[1];
+    }
+
     /*
     -------------from left clockwise:
     transform: rotateZ(180deg);
@@ -176,10 +195,12 @@ class RadialSlider {
   updateUI() {
     // 0.935 to equalize the non-linearity in the circle growth
     // (900 / this.svgPathLength) adds additional space for the displayed angle to breath
+
     this.radialSliderPath.style.strokeDashoffset =
       this.svgPathLength -
       this.svgPathLength * (-this.angle * (-1 / 360)) * 0.935 -
       900 / this.svgPathLength;
+
     //console.log(`pathLength: ${this.svgPathLength}`);
     //console.log(`angle: ${this.angle}`);
     //console.log(`DELTA strokeDashOffset: ${-this.svgPathLength * (-this.angle * (-1 / 360))}`);
@@ -197,7 +218,12 @@ class RadialSlider {
       this.radialSliderValueDisp.style.transform = 'scaleX(-1) scaleY(-1)';
     }
 
-    this.radialSliderValueDisp.textContent = Math.ceil(this.angle);
+    const rangeUI = this.sliderUILimits[1] - this.sliderUILimits[0];
+    const rangeValue = this.sliderValueRange[1] - this.sliderValueRange[0];
+    this.value =
+      ((this.angle - this.sliderUILimits[0]) / rangeUI) * rangeValue +
+      this.sliderValueRange[0];
+    this.radialSliderValueDisp.textContent = Math.round(this.value);
     //console.log(this.angle);
   }
 
@@ -206,8 +232,8 @@ class RadialSlider {
   }
 }
 
-const radialSlider0 = new RadialSlider(0, 180, true);
-const radialSlider1 = new RadialSlider(1, 180, false);
+//const radialSlider0 = new RadialSlider(0, 180, false);
+const radialSlider1 = new RadialSlider(1, 180, [2, 8], [130, 230], false);
 
-radialSlider0.init();
+//radialSlider0.init();
 radialSlider1.init();

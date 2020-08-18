@@ -51,8 +51,8 @@ body {
 #radial-slider-container-1 {
   position: absolute;
   bottom: 0;
-  width: 400%;
-  transform: translateY(60%);
+  width: 120%;
+  transform: translateY(50%);
 }
 
 .radial-slider-container {
@@ -68,7 +68,6 @@ body {
   z-index: 5;
   height: 100%;
   transform: rotateZ(0);
-  background-color: salmon;
 }
 
 .radial-slider-valueDisp {
@@ -100,8 +99,8 @@ body {
 }
 
 #radial-slider-container-1 .radial-slider-path {
-  stroke-width: 10;
-  r: 45;
+  stroke-width: 16;
+  r: 42;
 }
 
 @keyframes dash {
