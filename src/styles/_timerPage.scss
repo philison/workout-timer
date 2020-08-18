@@ -6,7 +6,7 @@
   .testContainer-timer {
     width: 100%;
     height: 100%;
-    background-color: #4285f4;
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@
       border-radius: 50%;
       font-size: 2rem;
       font-weight: 900;
-      color: white;
+      color: var(--primary-color);
       text-decoration: none;
       text-align: center;
       //margin-top: 50%;

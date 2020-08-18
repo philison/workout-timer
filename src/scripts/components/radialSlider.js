@@ -1,3 +1,6 @@
+// TODO: update the state to the slider values and read default values for init
+// TODO: map values to angle
+
 // 1. enter the correct parent in the init function
 // 2. add id-css selector for the newly created class
 // 3. set size of the new slider and adjust the limits
@@ -5,7 +8,7 @@
 class RadialSlider {
   constructor(
     id = 0,
-    defaultValue = 180,
+    defaultValue,
     sliderValueRange = [0, 10],
     sliderUILimits = [130, 230],
     upsideDown = false
@@ -25,30 +28,31 @@ class RadialSlider {
     this.radialSliderValueDisp = {};
 
     this.angle = 0;
+    this.defaultAngle = 0;
     this.svgPathLength = 0;
     this.parent = {};
     this.value = 0; // holds the calculatet value of the slider
 
     this.html = `<div id="radial-slider-container-${this.id}" class="radial-slider-container">
-    <div class="radial-slider-valueDisp-container">
-      <div class="radial-slider-valueDisp">0</div>
-    </div>
-    <svg class="radial-slider-svg" width="100%" viewBox="0 0 100 100">
-      <circle 
-        class="radial-slider-path"
-        fill="none"
-        stroke-width="20"
-        cx="50"
-        cy="50"
-        r="40"
-      ></circle>
-    </svg>
-  </div>`;
+      <div class="radial-slider-valueDisp-container">
+        <div class="radial-slider-valueDisp">0</div>
+      </div>
+      <svg class="radial-slider-svg" width="100%" viewBox="0 0 100 100">
+        <circle 
+          class="radial-slider-path"
+          fill="none"
+          stroke-width="20"
+          cx="50"
+          cy="50"
+          r="40"
+        ></circle>
+      </svg>
+    </div>`;
   }
 
   init() {
     console.log('init');
-    this.parent = document.querySelector('.container');
+    this.parent = document.querySelector('.testContainer-slider');
     this.insertHTML(this.parent);
 
     // get elements
@@ -82,7 +86,17 @@ class RadialSlider {
     this.radialSliderPath.style.strokeDashoffset = this.svgPathLength;
 
     //set default value
-    this.angle = this.defaultValue;
+    const rangeUI = this.sliderUILimits[1] - this.sliderUILimits[0];
+    const rangeValue = this.sliderValueRange[1] - this.sliderValueRange[0];
+    this.defaultAngle =
+      ((this.defaultValue - this.sliderValueRange[0]) / rangeValue) * rangeUI +
+      this.sliderUILimits[0];
+
+    console.log(`${this.id}: ${this.defaultAngle}`);
+    this.angle = this.defaultAngle;
+
+    console.log(`${this.id} angle: ${this.angle}`);
+    //this.angle = this.defaultValue;
     this.updateUI();
 
     this.addMouseEventListener();
@@ -171,7 +185,6 @@ class RadialSlider {
     if (!this.upsideDown) {
       this.angle = angle180 >= -90 ? 270 - angle180 : -angle180 - 90;
     } else {
-      this.radialSliderSvg.style.transform = 'rotateX(180deg) rotateZ(90deg)';
       this.angle = angle180 >= 90 ? angle180 - 90 : angle180 + 270;
     }
 
@@ -183,10 +196,10 @@ class RadialSlider {
     }
 
     /*
-    -------------from left clockwise:
-    transform: rotateZ(180deg);
-    this.angle = angle180 >= 0 ? 180 - angle180 : 270- angle180;
-    */
+      -------------from left clockwise:
+      transform: rotateZ(180deg);
+      this.angle = angle180 >= 0 ? 180 - angle180 : 270- angle180;
+      */
   }
 
   updateUI() {
@@ -198,11 +211,12 @@ class RadialSlider {
       this.svgPathLength * (-this.angle * (-1 / 360)) * 0.935 -
       900 / this.svgPathLength;
 
+    //this.radialSliderPath.style.strokeDashoffset = 50;
     //console.log(`pathLength: ${this.svgPathLength}`);
     //console.log(`angle: ${this.angle}`);
     //console.log(`DELTA strokeDashOffset: ${-this.svgPathLength * (-this.angle * (-1 / 360))}`);
     //console.log(`pathLength: ${this.svgPathLength}`);
-    //console.log(`offset: ${this.radialSliderPath.style.strokeDashoffset}`);
+    console.log(`offset: ${this.radialSliderPath.style.strokeDashoffset}`);
 
     // update textField
     if (!this.upsideDown) {
@@ -210,16 +224,20 @@ class RadialSlider {
         this.angle - 180
       }deg)`;
     } else {
+      // slider svg has to get flipped in the init function
+      this.radialSliderSvg.style.transform = 'rotateX(180deg) rotateZ(90deg)';
       this.radialSliderValueDispContainer.style.transform = `rotateZ(${-this
         .angle}deg)`;
       this.radialSliderValueDisp.style.transform = 'scaleX(-1) scaleY(-1)';
     }
 
+    console.log(`angle in uppdate: ${this.angle}`);
     const rangeUI = this.sliderUILimits[1] - this.sliderUILimits[0];
     const rangeValue = this.sliderValueRange[1] - this.sliderValueRange[0];
     this.value =
       ((this.angle - this.sliderUILimits[0]) / rangeUI) * rangeValue +
       this.sliderValueRange[0];
+    console.log(this.value);
     this.radialSliderValueDisp.textContent = Math.round(this.value);
     //console.log(this.angle);
   }
@@ -229,8 +247,4 @@ class RadialSlider {
   }
 }
 
-//const radialSlider0 = new RadialSlider(0, 180, false);
-const radialSlider1 = new RadialSlider(1, 180, [2, 8], [130, 230], false);
-
-//radialSlider0.init();
-radialSlider1.init();
+export default RadialSlider;

@@ -1,0 +1,23 @@
+:root {
+  --primary-color: #edf2f4; // background and text
+  --secondary-color: #073b4c; // elements
+
+  //--circle-base-stroke-width: 20;
+  //--circle-width-0: 50%;
+
+  //--circle-width-3: 120%;
+}
+
+/*
+width: 100% * x
+>100% --> strokeW: 20 - 20 * 1/x // r: 40 + 20 * 1/x *1/2 
+<100% --> strokeW: 20 + 20 * x // r: 40 - 20 * x *1/2
+*/
+
+/*
+@function strokeWidth($elWidth, $baseStrokeWidth) {
+    $var = 
+    $strokeWidth = $baseStrokeWidth +  ;
+  @return $strokeWidth;
+}
+*/
