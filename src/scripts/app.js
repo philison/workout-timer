@@ -14,6 +14,7 @@ timing of the animation function and the writing of the html content
 
 import homePage from './pages/homePage.js';
 import settingsPage from './pages/settingsPage.js';
+import timerPage from './pages/timerPage.js';
 
 const state = {
   //default settings
@@ -58,11 +59,15 @@ const router = function () {
         };
         break;
       case settingsPage.pageAnchor:
-        //animationElement = settingsPage.leaveToSettingsPage();
         animationElement = settingsPage.leaveToTimerPage();
         animationElement.onanimationend = () => {
           insertPageHtml();
         };
+        break;
+      case timerPage.pageAnchor:
+        /*animationElement = settingsPage.leaveToTimerPage();
+        animationElement.onanimationend = () => {};*/
+        insertPageHtml();
         break;
       default:
         break;
@@ -76,6 +81,10 @@ const router = function () {
         break;
       case settingsPage.pageAnchor:
         console.log('settings reload');
+        insertPageHtml();
+        break;
+      case timerPage.pageAnchor:
+        console.log('timer reload');
         insertPageHtml();
         break;
       default:
@@ -117,6 +126,10 @@ const insertPageHtml = function () {
     case homePage.pageAnchor:
       homePage.insertPageHtml();
       //homePage.enterFromInit();
+      break;
+    case timerPage.pageAnchor:
+      timerPage.insertPageHtml();
+      //timerPage.enterFromSettingsPage(); //page enter animation
       break;
     default:
       break;

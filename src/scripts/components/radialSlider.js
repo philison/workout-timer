@@ -12,13 +12,15 @@ class RadialSlider {
     defaultValue,
     sliderValueRange = [0, 10],
     sliderUILimits = [130, 230],
-    upsideDown = false
+    upsideDown = false,
+    parentClass = ''
   ) {
     this.id = id; // 0-indexed
     this.defaultValue = defaultValue;
     this.sliderValueRange = sliderValueRange;
     this.sliderUILimits = sliderUILimits; // in degrees
     this.upsideDown = upsideDown;
+    this.parentClass = parentClass;
 
     this.draggingSlider = false;
 
@@ -53,7 +55,7 @@ class RadialSlider {
 
   init() {
     console.log('init');
-    this.parent = document.querySelector('.testContainer-slider');
+    this.parent = document.querySelector(this.parentClass);
     this.insertHTML(this.parent);
 
     // get elements

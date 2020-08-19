@@ -298,6 +298,26 @@ width: 100% * x
   #timer-page-container .testEnterTimer {
     color: gainsboro; }
 
+.testContainer-slider-timer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; }
+
+#radial-slider-container-4 {
+  position: absolute;
+  width: 80%;
+  transform: translateY(-20%); }
+  #radial-slider-container-4 .radial-slider-path {
+    stroke-width: 22;
+    r: 39; }
+  #radial-slider-container-4 .radial-slider-valueDisp {
+    margin-top: 1rem; }
+
 :root {
   --primary-color: #edf2f4;
   --secondary-color: #073b4c; }

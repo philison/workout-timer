@@ -37,3 +37,34 @@
     color: gainsboro;
   }
 }
+
+// slider -------------------
+
+.testContainer-slider-timer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  //background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+#radial-slider-container-4 {
+  position: absolute;
+  //top: 0;
+  width: 80%;
+  transform: translateY(-20%);
+
+  .radial-slider-path {
+    stroke-width: 22;
+    r: 39;
+  }
+
+  // for the upside down selectors
+  .radial-slider-valueDisp {
+    margin-top: 1rem;
+  }
+}
