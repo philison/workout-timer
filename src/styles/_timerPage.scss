@@ -1,70 +1,41 @@
 #timer-page-container {
   height: 100%;
   width: 100%;
+  background-color: var(--primary-color);
   //background-color: yellowgreen;
 
-  .testContainer-timer {
+  .timer-buttons-container {
+    position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--primary-color);
-    display: flex;
+    //background-color: var(--primary-color);
+    display: none;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 
-    .ball-timer {
-      width: 25rem;
-      height: 25rem;
-      background-color: pink;
+    .timer-buttons {
+      width: 10rem;
+      height: 10rem;
+      background-color: var(--secondary-color);
       border: none;
       border-radius: 50%;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--primary-color);
       text-decoration: none;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       //margin-top: 50%;
-      transform: translateY(50vh);
+      transform: translateY(-6.5rem);
 
       //animation: testAnimation 2s forwards;
       &:focus {
         outline: none;
         background-color: burlywood;
       }
+
+      .timer-buttons-icon {
+        color: var(--primary-color);
+        font-size: 7rem;
+      }
     }
-  }
-
-  .testEnterTimer {
-    color: gainsboro;
-  }
-}
-
-// slider -------------------
-
-.testContainer-slider-timer {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  //background-color: pink;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-}
-
-#radial-slider-container-4 {
-  position: absolute;
-  //top: 0;
-  width: 80%;
-  transform: translateY(-20%);
-
-  .radial-slider-path {
-    stroke-width: 22;
-    r: 39;
-  }
-
-  // for the upside down selectors
-  .radial-slider-valueDisp {
-    margin-top: 1rem;
   }
 }

@@ -1,34 +1,47 @@
-//TODO: write url request with button link
-//TODO: !!! insert and than animate, timing problem ?? animate from prev page state or
-//TODO: ignoring reloads for now
+//TODO: add timer button functionality and animation (push button)
+//TODO: add timerPage entry/leave animation
+//TODO: visually modifi pause timer
+//TODO: add sound / visual on mark and pause
 
-//TODO: 1. change home and settings page html
-//TODO: 2. add animations
-// enter animation has to be triggered from the html insertion function so that everything waits on the leave animation to finish
+//TODO: !!! save state / route to memmory : TAPED for NOW so that the countdown on reload works (remembers the true current values)
 
-//TODO: !!! save state / route to memmory : TAPED for NOW
-// What happens if animation is abborded ? does the event handler get triggered
 /*
 timing of the animation function and the writing of the html content
 */
 
+// enter animation has to be triggered from the html insertion function so that everything waits on the leave animation to finish
+
 import homePage from './pages/homePage.js';
 import settingsPage from './pages/settingsPage.js';
-import timerPage from './pages/timerPage.js';
+import { timerPage } from './pages/timerPage.js';
 
 const state = {
-  //default settings
-
   //current page
   curPage: '',
   //requestet page
   requestetPage: '',
 
-  userSetSliderValues: {
-    reps: 10,
+  // default slider-values
+  defaultSliderValues: {
+    repetitions: 10,
     interval: 60,
     pause: 30,
     marker: 1,
+  },
+
+  userSetSliderValues: {
+    repetitions: 2,
+    interval: 10,
+    pause: 4,
+    marker: 1,
+  },
+
+  currentCountdownValues: {
+    repetitions: 1,
+    interval: 60,
+    pause: 30,
+    marker: 1,
+    counterState: 'interval', // keeps track of the cur. running timer
   },
 };
 
@@ -130,6 +143,8 @@ const insertPageHtml = function () {
     case timerPage.pageAnchor:
       timerPage.insertPageHtml();
       //timerPage.enterFromSettingsPage(); //page enter animation
+      //when done:
+      timerPage.startCountdown();
       break;
     default:
       break;

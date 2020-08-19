@@ -1,0 +1,128 @@
+// slider -------------------
+
+.testContainer-slider-timer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  //background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+/*
+width: 100% * x
+>100% --> strokeW: 20 - 20 * 1/x // r: 40 + 20 * 1/x *1/2 
+<100% --> strokeW: 20 + 20 * x // r: 40 - 20 * x *1/2
+*/
+
+#radial-slider-container-4 {
+  position: absolute;
+  //top: 0;
+  width: 80%;
+  transform: translateY(-20%);
+
+  .radial-slider-path {
+    stroke-width: 22;
+    r: 39;
+  }
+}
+
+.radial-counter-valueDisp-container {
+  position: absolute;
+  z-index: 5;
+  height: 100%;
+  transform: rotateZ(0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radial-counter-valueDisp {
+  user-select: none;
+  color: var(--secondary-color);
+  font-size: 8rem;
+  transform: rotateX(0);
+}
+
+// page enter  -----------------------------------------
+
+.enter-SettingsPage-slider-animation {
+  animation: enter-SettingsPage-slider 1.5s ease-out;
+  @keyframes enter-SettingsPage-slider {
+    from {
+      stroke-dashoffset: 250;
+      //stroke: black;
+    }
+    to {
+      //stroke-dashoffset: 200;
+      //stroke: pink;
+    }
+  }
+}
+
+.enter-SettingsPage-valueDisp-animation {
+  animation: enter-SettingsPage-valueDisp 1.5s ease-out;
+  @keyframes enter-SettingsPage-valueDisp {
+    from {
+      transform: rotateZ(-300deg);
+      //stroke: black;
+    }
+    to {
+    }
+  }
+}
+
+.enter-SettingsPage-valueDisp-animation-upsideDown {
+  animation: enter-SettingsPage-valueDisp-upsideDown 1.5s ease-out;
+  @keyframes enter-SettingsPage-valueDisp-upsideDown {
+    from {
+      transform: rotateZ(30deg);
+      //stroke: black;
+    }
+    to {
+    }
+  }
+}
+
+// page leave -------------------------------------
+
+.leave-SettingsPage-slider-animation {
+  animation: leave-SettingsPage-slider 0.8s ease-in;
+  @keyframes leave-SettingsPage-slider {
+    from {
+      //stroke: black;
+    }
+    to {
+      stroke-dashoffset: 250;
+      //stroke-dashoffset: 200;
+      //stroke: pink;
+    }
+  }
+}
+
+.leave-SettingsPage-valueDisp-animation {
+  animation: leave-SettingsPage-valueDisp 0.8s ease-in;
+  @keyframes leave-SettingsPage-valueDisp {
+    from {
+      //stroke: black;
+    }
+    to {
+      transform: rotateZ(-300deg);
+    }
+  }
+}
+
+.leave-SettingsPage-valueDisp-animation-upsideDown {
+  animation: leave-SettingsPage-valueDisp-upsideDown 0.8s ease-in;
+  @keyframes leave-SettingsPage-valueDisp-upsideDown {
+    from {
+      //stroke: black;
+    }
+    to {
+      transform: rotateZ(30deg);
+    }
+  }
+}

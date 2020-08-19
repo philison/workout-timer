@@ -1,5 +1,3 @@
-// TODO: update the state to the slider values and read default values for init --DONE
-
 import state from '../app.js';
 
 // 1. enter the correct parent in the init function
@@ -256,16 +254,20 @@ class RadialSlider {
   updateState() {
     switch (this.id) {
       case 0:
-        state.userSetSliderValues.reps = Math.round(this.value);
+        state.userSetSliderValues.repetitions = Math.round(this.value);
+        state.currentCountdownValues.repetitions = 1;
         break;
       case 1:
         state.userSetSliderValues.interval = Math.round(this.value);
+        state.currentCountdownValues.interval = Math.round(this.value);
         break;
       case 2:
         state.userSetSliderValues.pause = Math.round(this.value);
+        state.currentCountdownValues.pause = Math.round(this.value);
         break;
       case 3:
         state.userSetSliderValues.marker = Math.round(this.value);
+        state.currentCountdownValues.marker = Math.round(this.value);
         break;
       default:
         break;

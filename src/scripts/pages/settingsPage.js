@@ -25,7 +25,7 @@ const settingsPage = {
     // create new slider,
     const radialSlider0 = new RadialSlider(
       0,
-      10,
+      state.defaultSliderValues.repetitions,
       [1, 10],
       [130, 230],
       true,
@@ -33,7 +33,7 @@ const settingsPage = {
     );
     const radialSlider1 = new RadialSlider(
       1,
-      60,
+      state.defaultSliderValues.interval,
       [10, 80],
       [130, 230],
       true,
@@ -41,7 +41,7 @@ const settingsPage = {
     );
     const radialSlider2 = new RadialSlider(
       2,
-      30,
+      state.defaultSliderValues.pause,
       [0, 60],
       [150, 210],
       true,
@@ -50,7 +50,7 @@ const settingsPage = {
 
     const radialSlider3 = new RadialSlider(
       3,
-      1,
+      state.defaultSliderValues.marker,
       [0, 2],
       [130, 230],
       false,
