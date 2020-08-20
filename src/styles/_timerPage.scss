@@ -81,6 +81,48 @@
   }
 }
 
+.end-screen-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  pointer-events: none;
+}
+
+.end-screen {
+  position: absolute;
+  color: var(--secondary-color);
+  font-size: 10rem;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary-color);
+  //border-radius: 50%;
+  display: none;
+  pointer-events: none;
+  //border-color: var(--secondary-color);
+  //border-width: 10rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+.end-screen-animation {
+  animation: end-screen-pop 0.5s forwards ease-in;
+  @keyframes end-screen-pop {
+    from {
+      height: 0.5rem;
+      width: 0.5rem;
+    }
+    to {
+      width: 120vh;
+      height: 120vh;
+    }
+  }
+}
+*/
+
 // entry animations ------------------------------------------------
 
 .enter-TimerPage-counter-animation {
@@ -88,7 +130,7 @@
   @keyframes enter-TimerPage-counter {
     from {
       transform: translateY(50vh);
-      width: 25%;
+      width: 0.5rem;
     }
     to {
     }
@@ -124,7 +166,8 @@
     }
     to {
       transform: translateY(50vh);
-      width: 25%;
+      width: 8rem;
+      height: 8rem;
     }
   }
 }

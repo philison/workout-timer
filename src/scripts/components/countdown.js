@@ -35,12 +35,30 @@ const countdown = {
     let countCurrentValue;
     let angle;
 
+    // audio
+    const audioBeep = new Audio('../../styles/audio/double-beep.mp3');
+    const audioLongBeep = new Audio('../../styles/audio/long-beep.mp3');
+
     if (
       state.currentCountdownValues.repetitions >
       state.userSetSliderValues.repetitions
     ) {
       // done !!
       console.log('training done');
+
+      // switch color
+      /*
+      document.documentElement.style.setProperty('--primary-color', '#073b4c');
+      document.documentElement.style.setProperty(
+        '--secondary-color',
+        '#edf2f4'
+      );*/
+
+      // make screen blue and show stop button with high z
+      document.querySelector('.end-screen').style.display = 'flex';
+
+      document.querySelector('#stop').style.display = 'flex';
+      document.querySelector('#stop').style.zIndex = '10';
     } else {
       switch (state.currentCountdownValues.counterState) {
         case 'interval':
@@ -48,6 +66,18 @@ const countdown = {
           countEndValue = 0;
           countStartValue = state.userSetSliderValues.interval;
           countCurrentValue = state.currentCountdownValues.interval;
+
+          // switch color
+          document.documentElement.style.setProperty(
+            '--primary-color',
+            '#073b4c'
+          );
+          document.documentElement.style.setProperty(
+            '--secondary-color',
+            '#edf2f4'
+          );
+
+          audioBeep.play();
 
           // clear countdowns, as this might get called by reloading the page and the old intervall still running
           // if (typeof objectToBeTested != "undefined")
@@ -68,6 +98,10 @@ const countdown = {
             if (countCurrentValue <= countEndValue) {
               // switch state when timer is done and call function
               state.currentCountdownValues.counterState = 'pause';
+
+              // audio
+              audioBeep.play();
+
               countdown.run();
               clearInterval(this.countDownInterval);
             } else {
@@ -78,6 +112,43 @@ const countdown = {
                   (countStartValue - countEndValue)) *
                 360;
               radialCounter4.updateUI();
+
+              // audio
+              console.log(state.userSetSliderValues.marker);
+              switch (state.userSetSliderValues.marker) {
+                case 1:
+                  if (
+                    Math.round(state.userSetSliderValues.interval / 2) ==
+                    Math.round(state.currentCountdownValues.interval)
+                  ) {
+                    audioLongBeep.play();
+                  }
+                  break;
+                case 2:
+                  if (
+                    Math.round(state.userSetSliderValues.interval / 3) ==
+                      Math.round(state.currentCountdownValues.interval) ||
+                    Math.round((state.userSetSliderValues.interval * 2) / 3) ==
+                      Math.round(state.currentCountdownValues.interval)
+                  ) {
+                    audioLongBeep.play();
+                  }
+                  break;
+                case 3:
+                  if (
+                    Math.round(state.userSetSliderValues.interval / 4) ==
+                      Math.round(state.currentCountdownValues.interval) ||
+                    Math.round((state.userSetSliderValues.interval * 2) / 4) ==
+                      Math.round(state.currentCountdownValues.interval) ||
+                    Math.round((state.userSetSliderValues.interval * 3) / 4) ==
+                      Math.round(state.currentCountdownValues.interval)
+                  ) {
+                    audioLongBeep.play();
+                  }
+                  break;
+                default:
+                  break;
+              }
             }
           }, 20);
 
@@ -89,6 +160,16 @@ const countdown = {
           countEndValue = 0;
           countStartValue = state.userSetSliderValues.pause;
           countCurrentValue = state.currentCountdownValues.pause;
+
+          // switch color
+          document.documentElement.style.setProperty(
+            '--primary-color',
+            '#edf2f4'
+          );
+          document.documentElement.style.setProperty(
+            '--secondary-color',
+            '#073b4c'
+          );
 
           // clear countdowns, as this might get called by reloading the page and the old intervall still running
           // if (typeof objectToBeTested != "undefined")

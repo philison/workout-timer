@@ -33,6 +33,19 @@
       &:focus {
         outline: none;
         //background-color: burlywood;
+        animation: onclickBtn 0.8s ease-in-out;
+        @keyframes onclickBtn {
+          0% {
+          }
+          50% {
+            transform: translateY(50vh) scale(1);
+          }
+          80% {
+            transform: translateY(50vh) scale(1.8);
+          }
+          100% {
+          }
+        }
       }
 
       .goBtnText-settings {

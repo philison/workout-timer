@@ -350,7 +350,16 @@ width: 100% * x
       justify-content: center;
       transform: translateY(50vh) scale(1.6); }
       #settings-page-container .testContainer-settings .ball-settings:focus {
-        outline: none; }
+        outline: none;
+        animation: onclickBtn 0.8s ease-in-out; }
+
+@keyframes onclickBtn {
+  0% { }
+  50% {
+    transform: translateY(50vh) scale(1); }
+  80% {
+    transform: translateY(50vh) scale(1.8); }
+  100% { } }
       #settings-page-container .testContainer-settings .ball-settings .goBtnText-settings {
         transform: translateY(-3rem); }
   #settings-page-container .testEnter {
@@ -411,13 +420,49 @@ width: 100% * x
     .testContainer-repBall-timer .repBall-timer .repBallText-timer {
       transform: translateY(2.3rem); }
 
+.end-screen-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  pointer-events: none; }
+
+.end-screen {
+  position: absolute;
+  color: var(--secondary-color);
+  font-size: 10rem;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary-color);
+  display: none;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center; }
+
+/*
+.end-screen-animation {
+  animation: end-screen-pop 0.5s forwards ease-in;
+  @keyframes end-screen-pop {
+    from {
+      height: 0.5rem;
+      width: 0.5rem;
+    }
+    to {
+      width: 120vh;
+      height: 120vh;
+    }
+  }
+}
+*/
 .enter-TimerPage-counter-animation {
   animation: enter-TimerPage-counter 1s; }
 
 @keyframes enter-TimerPage-counter {
   from {
     transform: translateY(50vh);
-    width: 25%; }
+    width: 0.5rem; }
   to { } }
 
 .enter-TimerPage-counterText-animation {
@@ -443,7 +488,8 @@ width: 100% * x
   from { }
   to {
     transform: translateY(50vh);
-    width: 25%; } }
+    width: 8rem;
+    height: 8rem; } }
 
 .enter-TimerPage-ballText-animation {
   animation: enter-TimerPage-ballText 0.3s ease-in; }

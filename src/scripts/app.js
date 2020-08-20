@@ -1,7 +1,7 @@
-//TODO: entry animation timer ----DONE
-//TODO: add rep counter ----DONE
-//TODO: visually modifi pause timer
-//TODO: add sound / visual on mark and pause
+//TODO: visually modifi pause timer (e.g. color switch) ----DONE
+//TODO: add sound / visual on mark and pause ----DONE
+//TODO: add click effect for go button ----DONE
+//TODO: endscreen
 
 //TODO: !!! save state / route to memmory : TAPED for NOW so that the countdown on reload works (remembers the true current values)
 

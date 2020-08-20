@@ -244,6 +244,8 @@ class RadialSlider {
 
     // update the state variables
     this.updateState();
+    // needed if abortion happens during pause
+    state.currentCountdownValues.counterState = 'interval';
     //console.log(state.userSetSliderValues);
   }
 

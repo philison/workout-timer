@@ -22,6 +22,10 @@ const settingsPage = {
     console.log('settings html insertet');
     //console.log(document.querySelector('#page-container').innerHTML);
 
+    // switch color to corect one
+    document.documentElement.style.setProperty('--primary-color', '#edf2f4');
+    document.documentElement.style.setProperty('--secondary-color', '#073b4c');
+
     // create new slider,
     const radialSlider0 = new RadialSlider(
       0,
@@ -51,7 +55,7 @@ const settingsPage = {
     const radialSlider3 = new RadialSlider(
       3,
       state.defaultSliderValues.marker,
-      [0, 2],
+      [0, 3],
       [130, 230],
       false,
       '.testContainer-slider'

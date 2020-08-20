@@ -38,6 +38,11 @@ const timerPage = {
       </a>
     </div>
 
+    <div class="end-screen-container">
+      <div class="end-screen">DONE</div>
+    </div>
+    
+
   </div>`;
 
     insertHTML(html);
