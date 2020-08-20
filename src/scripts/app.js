@@ -1,4 +1,4 @@
-//TODO: add timer button functionality and animation (push button)
+//TODO: add timer button functionality and animation (push button) ----DONE at least the basics / maybe add wiggle on activation
 //TODO: add timerPage entry/leave animation
 //TODO: visually modifi pause timer
 //TODO: add sound / visual on mark and pause

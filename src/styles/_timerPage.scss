@@ -9,18 +9,19 @@
     width: 100%;
     height: 100%;
     //background-color: var(--primary-color);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: flex-end;
 
     .timer-buttons {
+      position: absolute;
       width: 10rem;
       height: 10rem;
       background-color: var(--secondary-color);
       border: none;
       border-radius: 50%;
       text-decoration: none;
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       //margin-top: 50%;
@@ -36,6 +37,109 @@
         color: var(--primary-color);
         font-size: 7rem;
       }
+    }
+  }
+}
+
+// start with stop and play invisible
+#play,
+#stop {
+  display: none;
+}
+
+.btn-click-wiggle-animation {
+  animation: btn-click-wiggle 0.3s;
+  @keyframes btn-click-wiggle {
+    0% {
+    }
+    50% {
+      transform: translateY(-6.5rem) scaleX(0.8) scaleY(0.8);
+    }
+    100% {
+    }
+  }
+}
+
+.playButton-spread-timer-animation {
+  animation: playButton-spread-timer 0.5s ease-out forwards;
+
+  @keyframes playButton-spread-timer {
+    from {
+    }
+    to {
+      transform: translateY(-6.5rem) translateX(8rem);
+    }
+  }
+}
+
+.stopButton-spread-timer-animation {
+  animation: stopButton-spread-timer 0.5s ease-out forwards;
+
+  @keyframes stopButton-spread-timer {
+    from {
+    }
+    to {
+      transform: translateY(-6.5rem) translateX(-8rem);
+    }
+  }
+}
+
+.playButton-snuggle-timer-animation {
+  animation: playButton-snuggle-timer 0.5s ease-out;
+  @keyframes playButton-snuggle-timer {
+    from {
+      transform: translateY(-6.5rem) translateX(8rem);
+    }
+    to {
+      //transform: translateY(-6.5rem);
+    }
+  }
+}
+
+.stopButton-snuggle-timer-animation {
+  animation: stopButton-snuggle-timer 0.5s ease-out;
+  @keyframes stopButton-snuggle-timer {
+    from {
+      transform: translateY(-6.5rem) translateX(-8rem);
+    }
+    to {
+      //transform: translateY(-6.5rem);
+    }
+  }
+}
+
+.playButton-clicked-snuggle-timer-animation {
+  animation: playButton-clicked-snuggle-timer 0.5s ease-out;
+  @keyframes playButton-clicked-snuggle-timer {
+    0% {
+      transform: translateY(-6.5rem) translateX(8rem);
+    }
+    20% {
+      transform: translateY(-6.5rem) translateX(8rem) scaleX(0.8) scaleY(0.8);
+    }
+    40% {
+      transform: translateY(-6.5rem) translateX(8rem);
+    }
+    100% {
+      //transform: translateY(-6.5rem);
+    }
+  }
+}
+
+.stopButton-clicked-snuggle-timer-animation {
+  animation: stopButton-clicked-snuggle-timer 0.5s ease-out;
+  @keyframes stopButton-clicked-snuggle-timer {
+    0% {
+      transform: translateY(-6.5rem) translateX(-8rem);
+    }
+    20% {
+      transform: translateY(-6.5rem) translateX(-8rem) scaleX(0.8) scaleY(0.8);
+    }
+    40% {
+      transform: translateY(-6.5rem) translateX(-8rem);
+    }
+    to {
+      //transform: translateY(-6.5rem);
     }
   }
 }
