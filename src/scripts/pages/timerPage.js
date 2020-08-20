@@ -10,30 +10,15 @@ const timerPage = {
 
   insertPageHtml: function () {
     console.log('Timer insertPageHtml');
-    //TODO: fill with html
     let html = `<div id="timer-page-container" class="page">
 
+    <div class="testContainer-repBall-timer">
+      <a class="repBall-timer" href="/#timerPage">
+        <span class="repBallText-timer">0</span>
+      </a>
+    </div>
+
     <div class="testContainer-slider-timer"></div>
-
-    <!--
-    <div id="stop" class="timer-buttons-container">
-      <button class="timer-buttons" >
-        <span class="material-icons-round timer-buttons-icon">clear</span>
-      </button>
-    </div>
-
-    <div id="play" class="timer-buttons-container">
-      <button class="timer-buttons" >
-        <span class="material-icons-round timer-buttons-icon">play_arrow</span>
-      </button>
-    </div>
-
-    <div id="pause" class="timer-buttons-container">
-      <button class="timer-buttons" >
-        <span class="material-icons-round timer-buttons-icon">pause</span>
-      </button>
-    </div>
-    -->
 
     <div  class="timer-buttons-container">
       <a id="stop" class="timer-buttons" href="/#settingsPage">
@@ -45,6 +30,12 @@ const timerPage = {
       <button id="pause" class="timer-buttons" >
         <span class="material-icons-round timer-buttons-icon">pause</span>
       </button>
+    </div>
+
+    <div class="testContainer-ball-timer">
+      <a class="ball-timer" href="/#timerPage">
+        <span class="goBtnText-timer">GO</span>
+      </a>
     </div>
 
   </div>`;
@@ -65,6 +56,11 @@ const timerPage = {
     // init slider
     radialCounter4.init();
 
+    // init rep counter
+    document.querySelector(
+      '.repBallText-timer'
+    ).innerHTML = `${state.currentCountdownValues.repetitions}`;
+
     /**  listener for buttons **/
     // listener paus button --> function to split button and pause counter
     const playBtn = document.querySelector('#play');
@@ -79,6 +75,12 @@ const timerPage = {
       // clear the countdowns
       countdown.clearCounter();
       pauseBtn.classList.add('btn-click-wiggle-animation');
+
+      // remove entry animation classes  -----------------
+      const timerButton = document.getElementById('pause');
+      timerButton.classList.remove('enter-TimerPage-button-animation');
+      const counter4 = document.getElementById('radial-slider-container-4');
+      counter4.classList.remove('enter-TimerPage-counter-animation');
 
       function awaitWiggle() {
         // show the play and stop button
@@ -151,6 +153,35 @@ const timerPage = {
   enterFromSettingsPage: function () {
     state.curPage = this.pageAnchor;
     console.log('enterFromSettingsPage');
+    // select radialCounter
+    const counter4 = document.getElementById('radial-slider-container-4');
+    counter4.style.display = 'none';
+    const timerButton = document.getElementById('pause');
+    timerButton.style.display = 'none';
+
+    const ballTimer = document.querySelector('.ball-timer');
+    ballTimer.classList.add('enter-TimerPage-ball-animation');
+
+    document
+      .querySelector('.goBtnText-timer')
+      .classList.add('enter-TimerPage-ballText-animation');
+
+    function awaitBallAnimation() {
+      ballTimer.removeEventListener('animationend', awaitBallAnimation);
+
+      document.querySelector('.testContainer-ball-timer').style.display =
+        'none';
+
+      counter4.style.display = 'flex';
+      counter4.classList.add('enter-TimerPage-counter-animation');
+      document
+        .querySelector('#radial-slider-container-4 .radial-counter-valueDisp')
+        .classList.add('enter-TimerPage-counterText-animation');
+
+      timerButton.style.display = 'flex';
+      timerButton.classList.add('enter-TimerPage-button-animation');
+    }
+    ballTimer.addEventListener('animationend', awaitBallAnimation);
   },
 
   leaveToSettingsPage: function () {

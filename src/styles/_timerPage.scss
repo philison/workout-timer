@@ -30,7 +30,7 @@
       //animation: testAnimation 2s forwards;
       &:focus {
         outline: none;
-        background-color: burlywood;
+        //background-color: burlywood;
       }
 
       .timer-buttons-icon {
@@ -40,6 +40,147 @@
     }
   }
 }
+
+.testContainer-repBall-timer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  //background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+
+  .repBall-timer {
+    width: 10rem;
+    height: 10rem;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 50%;
+    font-size: 4rem;
+    //font-weight: 900;
+
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //margin-top: 50%;
+    transform: translateY(-50vh);
+
+    //animation: testAnimation 2s forwards;
+    &:focus {
+      outline: none;
+      //background-color: burlywood;
+    }
+
+    .repBallText-timer {
+      //margin-top: 3rem;
+      transform: translateY(2.3rem);
+    }
+  }
+}
+
+// entry animations ------------------------------------------------
+
+.enter-TimerPage-counter-animation {
+  animation: enter-TimerPage-counter 1s;
+  @keyframes enter-TimerPage-counter {
+    from {
+      transform: translateY(50vh);
+      width: 25%;
+    }
+    to {
+    }
+  }
+}
+
+.enter-TimerPage-counterText-animation {
+  animation: enter-TimerPageText-counter 1s;
+  @keyframes enter-TimerPageText-counter {
+    from {
+      font-size: 1rem;
+    }
+    to {
+    }
+  }
+}
+
+.enter-TimerPage-button-animation {
+  animation: enter-button-counter 1s;
+  @keyframes enter-button-counter {
+    from {
+      transform: translateY(80vh) scale(0.5);
+    }
+    to {
+    }
+  }
+}
+
+.enter-TimerPage-ball-animation {
+  animation: enter-TimerPage-ball 0.3s ease-in;
+  @keyframes enter-TimerPage-ball {
+    from {
+    }
+    to {
+      transform: translateY(50vh);
+      width: 25%;
+    }
+  }
+}
+
+.enter-TimerPage-ballText-animation {
+  animation: enter-TimerPage-ballText 0.3s ease-in;
+  @keyframes enter-TimerPage-ballText {
+    from {
+    }
+    to {
+      transform: translateY(-3rem) scale(0);
+    }
+  }
+}
+
+.testContainer-ball-timer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  //background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+
+  .ball-timer {
+    width: 15rem;
+    height: 15rem;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 50%;
+    font-size: 4rem;
+    //font-weight: 900;
+
+    color: var(--primary-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //margin-top: 50%;
+    transform: translateY(50vh) scale(1.6);
+
+    //animation: testAnimation 2s forwards;
+    &:focus {
+      outline: none;
+      //background-color: burlywood;
+    }
+
+    .goBtnText-timer {
+      //margin-top: 3rem;
+      transform: translateY(-3rem);
+    }
+  }
+}
+
+// button animations -----------------------------------------------
 
 // start with stop and play invisible
 #play,

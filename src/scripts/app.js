@@ -1,5 +1,5 @@
-//TODO: add timer button functionality and animation (push button) ----DONE at least the basics / maybe add wiggle on activation
-//TODO: add timerPage entry/leave animation
+//TODO: entry animation timer ----DONE
+//TODO: add rep counter ----DONE
 //TODO: visually modifi pause timer
 //TODO: add sound / visual on mark and pause
 
@@ -142,7 +142,7 @@ const insertPageHtml = function () {
       break;
     case timerPage.pageAnchor:
       timerPage.insertPageHtml();
-      //timerPage.enterFromSettingsPage(); //page enter animation
+      timerPage.enterFromSettingsPage(); //page enter animation
       //when done:
       timerPage.startCountdown();
       break;

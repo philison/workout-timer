@@ -117,6 +117,9 @@ const countdown = {
               // switch state when timer is done and call function
               state.currentCountdownValues.counterState = 'interval';
               state.currentCountdownValues.repetitions += 1;
+              document.querySelector(
+                '.repBallText-timer'
+              ).innerHTML = `${state.currentCountdownValues.repetitions}`;
 
               countdown.run();
               clearInterval(this.countDownPause);
