@@ -1,4 +1,5 @@
-import state from '../app.js';
+//import state from '../app.js';
+import { state } from '../app.js';
 import { insertHTML } from '../components/services.js';
 import RadialCounter from '../components/radialCounter.js';
 import countdown from '../components/countdown.js';
@@ -72,7 +73,7 @@ const timerPage = {
     const stopBtn = document.querySelector('#stop');
     const pauseBtn = document.querySelector('#pause');
 
-    pauseBtn.style.display = 'flex';
+    //pauseBtn.style.display = 'flex';
 
     pauseBtn.addEventListener('touchstart', () => {
       console.log('pause button pushed');
@@ -162,7 +163,7 @@ const timerPage = {
     const counter4 = document.getElementById('radial-slider-container-4');
     counter4.style.display = 'none';
     const timerButton = document.getElementById('pause');
-    timerButton.style.display = 'none';
+    //timerButton.style.display = 'none';
 
     const ballTimer = document.querySelector('.ball-timer');
     ballTimer.classList.add('enter-TimerPage-ball-animation');

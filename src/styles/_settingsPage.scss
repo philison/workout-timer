@@ -13,6 +13,7 @@
     align-items: center;
 
     .ball-settings {
+      user-select: none;
       width: 15rem;
       height: 15rem;
       background-color: var(--secondary-color);

@@ -1,5 +1,6 @@
-import state from '../app.js';
+import { state } from '../app.js';
 import { radialCounter4 } from '../pages/timerPage.js';
+import { audioBeep, audioLongBeep } from '../pages/homePage.js';
 
 /*
 // declate setInterval variables with global access so the 
@@ -35,9 +36,12 @@ const countdown = {
     let countCurrentValue;
     let angle;
 
+    /*
     // audio
     const audioBeep = new Audio('../../styles/audio/double-beep.mp3');
-    const audioLongBeep = new Audio('../../styles/audio/long-beep.mp3');
+    const audioLongBeep = new Audio('../../styles/audio/long-beep.mp3');*/
+    //const audioBeep = audio[0];
+    //const audioLongBeep = audio[1];
 
     if (
       state.currentCountdownValues.repetitions >

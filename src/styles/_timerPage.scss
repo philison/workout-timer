@@ -149,12 +149,14 @@
 }
 
 .enter-TimerPage-button-animation {
-  animation: enter-button-counter 1s;
-  @keyframes enter-button-counter {
+  animation: enter-TimerPage-button 1s;
+  @keyframes enter-TimerPage-button {
     from {
       transform: translateY(80vh) scale(0.5);
+      display: flex;
     }
     to {
+      display: flex;
     }
   }
 }

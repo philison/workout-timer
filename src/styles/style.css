@@ -37,7 +37,8 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      transform: translateY(30vh); }
+      transform: translateY(30vh);
+      user-select: none; }
       #home-page-container .testContainer .ball:focus {
         outline: none; }
   #home-page-container .leaveToSettingsPage-ball {
@@ -110,11 +111,11 @@ width: 100% * x
 */
 #radial-slider-container-4 {
   position: absolute;
-  width: 80%;
+  width: 80vw;
+  height: 80vw;
   transform: translateY(-20%); }
   #radial-slider-container-4 .radial-slider-path {
-    stroke-width: 22;
-    r: 39; }
+    stroke-width: 22; }
 
 .radial-counter-valueDisp-container {
   position: absolute;
@@ -199,8 +200,7 @@ width: 100% * x
   width: 70%;
   transform: translateY(-50%); }
   #radial-slider-container-0 .radial-slider-path {
-    stroke-width: 32;
-    r: 34; }
+    stroke-width: 32; }
   #radial-slider-container-0 .radial-slider-valueDisp {
     margin-top: 1rem; }
 
@@ -210,8 +210,7 @@ width: 100% * x
   width: 130%;
   transform: translateY(-50%); }
   #radial-slider-container-1 .radial-slider-path {
-    stroke-width: 17;
-    r: 41.5; }
+    stroke-width: 17; }
   #radial-slider-container-1 .radial-slider-valueDisp {
     margin-top: 1rem; }
 
@@ -221,8 +220,7 @@ width: 100% * x
   width: 190%;
   transform: translateY(-50%); }
   #radial-slider-container-2 .radial-slider-path {
-    stroke-width: 11.5;
-    r: 44.25; }
+    stroke-width: 11.5; }
   #radial-slider-container-2 .radial-slider-valueDisp {
     margin-top: 1rem; }
 
@@ -232,8 +230,7 @@ width: 100% * x
   width: 120%;
   transform: translateY(50%); }
   #radial-slider-container-3 .radial-slider-path {
-    stroke-width: 18;
-    r: 41; }
+    stroke-width: 18; }
 
 .radial-slider-container {
   display: flex;
@@ -337,6 +334,7 @@ width: 100% * x
     justify-content: center;
     align-items: center; }
     #settings-page-container .testContainer-settings .ball-settings {
+      user-select: none;
       width: 15rem;
       height: 15rem;
       background-color: var(--secondary-color);
@@ -474,12 +472,14 @@ width: 100% * x
   to { } }
 
 .enter-TimerPage-button-animation {
-  animation: enter-button-counter 1s; }
+  animation: enter-TimerPage-button 1s; }
 
-@keyframes enter-button-counter {
+@keyframes enter-TimerPage-button {
   from {
-    transform: translateY(80vh) scale(0.5); }
-  to { } }
+    transform: translateY(80vh) scale(0.5);
+    display: flex; }
+  to {
+    display: flex; } }
 
 .enter-TimerPage-ball-animation {
   animation: enter-TimerPage-ball 0.3s ease-in; }

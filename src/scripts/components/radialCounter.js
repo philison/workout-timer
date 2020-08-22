@@ -1,4 +1,4 @@
-import state from '../app.js';
+import { state } from '../app.js';
 
 // 1. enter the correct parent in the init function
 // 2. add id-css selector for the newly created class
@@ -26,6 +26,7 @@ class RadialCounter {
     this.svgPathLength = 0;
     this.parent = {};
 
+    this.radiusSVG = [39];
     this.html = `<div id="radial-slider-container-${this.id}" class="radial-slider-container">
       <div class="radial-counter-valueDisp-container">
         <div class="radial-counter-valueDisp">0</div>
@@ -61,6 +62,9 @@ class RadialCounter {
     this.radialSliderValueDispContainer = document.querySelector(
       `#radial-slider-container-${this.id} .radial-counter-valueDisp-container`
     );
+
+    // set r attribute (safari does not yet support svg2 (setting r with css))
+    this.radialSliderPath.setAttribute('r', this.radiusSVG[this.id - 4]);
 
     // get PathLength
     this.svgPathLength =

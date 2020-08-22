@@ -11,7 +11,7 @@ timing of the animation function and the writing of the html content
 
 // enter animation has to be triggered from the html insertion function so that everything waits on the leave animation to finish
 
-import homePage from './pages/homePage.js';
+import { homePage } from './pages/homePage.js';
 import settingsPage from './pages/settingsPage.js';
 import { timerPage } from './pages/timerPage.js';
 
@@ -154,7 +154,7 @@ const insertPageHtml = function () {
   state.curPage = state.requestetPage;
 };
 
-export default state;
+export { state };
 
 /*
 const startEnterRender = function () {

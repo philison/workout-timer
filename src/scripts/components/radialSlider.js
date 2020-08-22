@@ -1,4 +1,4 @@
-import state from '../app.js';
+import { state } from '../app.js';
 
 // 1. enter the correct parent in the init function
 // 2. add id-css selector for the newly created class
@@ -34,6 +34,7 @@ class RadialSlider {
     this.parent = {};
     this.value = 0; // holds the calculatet value of the slider
 
+    this.radiusSVG = [32, 41.5, 44.25, 41];
     this.html = `<div id="radial-slider-container-${this.id}" class="radial-slider-container">
       <div class="radial-slider-valueDisp-container">
         <div class="radial-slider-valueDisp">0</div>
@@ -69,6 +70,9 @@ class RadialSlider {
     this.radialSliderValueDispContainer = document.querySelector(
       `#radial-slider-container-${this.id} .radial-slider-valueDisp-container`
     );
+
+    // set r attribute (safari does not yet support svg2 (setting r with css))
+    this.radialSliderPath.setAttribute('r', this.radiusSVG[this.id]);
 
     // get svg center !!! put in INIT
     // getBoundingClientRect() returns coordinates relativ to the viewport, not the whole document

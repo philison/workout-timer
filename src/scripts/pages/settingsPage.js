@@ -1,4 +1,4 @@
-import state from '../app.js';
+import { state } from '../app.js';
 import { insertHTML } from '../components/services.js';
 import RadialSlider from '../components/radialSlider.js';
 

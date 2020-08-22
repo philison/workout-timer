@@ -1,5 +1,9 @@
-import state from '../app.js';
+import { state } from '../app.js';
 import { insertHTML } from '../components/services.js';
+
+// audio
+const audioBeep = new Audio('../../styles/audio/double-beep.mp3');
+const audioLongBeep = new Audio('../../styles/audio/long-beep.mp3');
 
 const homePage = {
   pageAnchor: 'homePage',
@@ -30,6 +34,25 @@ const homePage = {
 
     insertHTML(html);
     console.log('home html insertet');
+
+    // audio
+    function playAudioSafari() {
+      audioLongBeep.play();
+      audioLongBeep.pause();
+      audioLongBeep.currentTime = 0;
+
+      audioBeep.play();
+      audioBeep.pause();
+      audioBeep.currentTime = 0;
+      document
+        .querySelector('.ball')
+        .removeEventListener('touchstart', playAudioSafari);
+    }
+
+    // unlock sound files for later use in safari
+    document
+      .querySelector('.ball')
+      .addEventListener('touchstart', playAudioSafari, false);
   },
 
   enterFromInit: function () {
@@ -62,7 +85,7 @@ const homePage = {
   },
 };
 
-export default homePage;
+export { homePage, audioBeep, audioLongBeep };
 
 /*
     <!--
