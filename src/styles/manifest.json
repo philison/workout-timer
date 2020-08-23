@@ -1,0 +1,21 @@
+{
+  "short_name": "Wim",
+  "name": "WimTimer",
+  "icons": [
+    {
+      "src": "wim_icon.png",
+      "type": "image/png",
+      "sizes": "180x180",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "wim_icon_large.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "../index.html",
+  "background_color": "#edf2f4",
+  "display": "standalone",
+  "theme_color": "#073b4c"
+}

@@ -12,6 +12,7 @@ body {
   box-sizing: border-box;
   font-family: 'Hammersmith One', sans-serif;
   font-weight: 400;
+  background-color: var(--secondary-color);
   /*prevent scrolling */
   position: fixed; }
 
@@ -38,7 +39,8 @@ body {
       justify-content: center;
       align-items: center;
       transform: translateY(30vh);
-      user-select: none; }
+      user-select: none;
+      -webkit-tap-highlight-color: transparent; }
       #home-page-container .testContainer .ball:focus {
         outline: none; }
   #home-page-container .leaveToSettingsPage-ball {
@@ -341,6 +343,7 @@ width: 100% * x
       border: none;
       border-radius: 50%;
       font-size: 4rem;
+      -webkit-tap-highlight-color: transparent;
       color: var(--primary-color);
       text-decoration: none;
       display: flex;
